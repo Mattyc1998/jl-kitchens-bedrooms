@@ -207,7 +207,7 @@ a { color: inherit; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(56px, 7vw, 96px) clamp(40px, 6vw, 88px);
+  padding: clamp(56px, 7vw, 96px) clamp(32px, 5vw, 72px) clamp(56px, 7vw, 96px) clamp(56px, 8vw, 120px);
   overflow: hidden;
   z-index: 1;
 }
