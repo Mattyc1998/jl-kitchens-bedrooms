@@ -44,10 +44,10 @@ if (yearEl) {
 // Hero image carousel — cross-fades every ~5.5s, pauses on hover/focus,
 // and stays on a single static slide when the visitor prefers reduced motion.
 (function heroCarousel() {
-  const heroSection = document.querySelector('.hero');
+  const mediaPanel = document.querySelector('.hero-media-panel');
   const media = document.getElementById('heroMedia');
   const dotsWrap = document.getElementById('heroDots');
-  if (!heroSection || !media || !dotsWrap) return;
+  if (!mediaPanel || !media || !dotsWrap) return;
 
   const slides = Array.from(media.querySelectorAll('.hero-slide'));
   const dots = Array.from(dotsWrap.querySelectorAll('.hero-dot'));
@@ -91,11 +91,11 @@ if (yearEl) {
     });
   });
 
-  heroSection.addEventListener('mouseenter', stop);
-  heroSection.addEventListener('mouseleave', start);
-  heroSection.addEventListener('focusin', stop);
-  heroSection.addEventListener('focusout', (event) => {
-    if (!heroSection.contains(event.relatedTarget)) start();
+  mediaPanel.addEventListener('mouseenter', stop);
+  mediaPanel.addEventListener('mouseleave', start);
+  mediaPanel.addEventListener('focusin', stop);
+  mediaPanel.addEventListener('focusout', (event) => {
+    if (!mediaPanel.contains(event.relatedTarget)) start();
   });
 
   if (reducedMotion.matches) {

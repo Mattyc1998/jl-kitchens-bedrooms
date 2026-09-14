@@ -23,7 +23,6 @@
   --font-serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --container: 1240px;
-  --hero-text-shadow: 0 1px 2px rgba(4, 7, 15, 0.98), 0 2px 6px rgba(4, 7, 15, 0.92), 0 10px 24px rgba(6, 10, 20, 0.8), 0 24px 56px rgba(6, 10, 20, 0.6);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -114,13 +113,12 @@ a { color: inherit; }
   box-shadow: 0 12px 24px -10px rgba(176, 141, 79, 0.55);
 }
 .btn-outline {
-  background: rgba(10, 16, 32, 0.22);
+  background: transparent;
   border-color: var(--brass-300);
   color: var(--paper);
-  text-shadow: 0 1px 3px rgba(8, 13, 26, 0.9);
 }
 .btn-outline:hover, .btn-outline:focus-visible {
-  background: rgba(10, 16, 32, 0.4);
+  background: rgba(217, 190, 140, 0.12);
   border-color: var(--brass-500);
 }
 
@@ -189,29 +187,95 @@ a { color: inherit; }
   cursor: pointer;
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero (split layout: solid navy text panel + full-bleed photo) ---------- */
 .hero {
   position: relative;
-  /* z-index:0 forces this to be its own stacking context, so the
-     background below is correctly contained behind hero-media's
-     z-index:-1 image layer instead of painting over it. */
-  z-index: 0;
-  /* Source photos are low native resolution (~736px wide); a shorter,
-     width-capped hero keeps the upscale ratio down until higher-res
-     photography is available. */
-  min-height: clamp(480px, 70vh, 720px);
-  max-width: 1920px;
-  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(380px, 46%) 1fr;
+  min-height: clamp(560px, 78vh, 760px);
+  color: var(--paper);
+  /* .hero is a <section>, so it would otherwise inherit the generic
+     section{padding} rule (96px / 64px on mobile) and leave the page
+     background exposed above/below the panels. */
+  padding: 0;
+}
+
+/* ---- Text panel ---- */
+.hero-text-panel {
+  position: relative;
   background: var(--navy-950);
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(56px, 7vw, 96px) clamp(40px, 6vw, 88px);
+  overflow: hidden;
+  z-index: 1;
+}
+.hero-rule {
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: var(--brass-500);
+  margin-bottom: 24px;
+  border-radius: 2px;
+}
+.hero-watermark {
+  position: absolute;
+  right: -8%;
+  bottom: -10%;
+  width: 58%;
+  max-width: 340px;
+  opacity: 0.05;
+  pointer-events: none;
+  user-select: none;
+}
+.hero-eyebrow {
+  position: relative;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  color: var(--brass-300);
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: block;
+}
+.hero h1 {
+  position: relative;
+  font-size: clamp(2.1rem, 3.6vw, 3.25rem);
   color: var(--paper);
+  overflow: hidden;
+}
+.hero h1 .line {
+  display: block;
+  transform: translateY(110%);
+  animation: hero-reveal 0.8s cubic-bezier(0.2, 0.9, 0.25, 1) forwards;
+}
+.hero h1 .line:nth-child(2) { animation-delay: 0.12s; }
+@keyframes hero-reveal {
+  to { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 .line { transform: none; animation: none; }
+}
+.hero-sub {
+  position: relative;
+  font-size: 1.1rem;
+  max-width: 46ch;
+  margin: 24px 0 34px;
+  color: var(--paper-dim);
+}
+.hero-ctas { position: relative; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
+.hero-note { position: relative; font-size: 0.85rem; color: var(--brass-300); margin-top: 20px; }
+
+/* ---- Media panel: full-bleed carousel, no text, no scrim ---- */
+.hero-media-panel {
+  position: relative;
   overflow: hidden;
 }
 .hero-media {
   position: absolute;
   inset: 0;
-  z-index: -1;
 }
 .hero-slide {
   position: absolute;
@@ -223,24 +287,17 @@ a { color: inherit; }
   opacity: 0;
   transition: opacity 1.6s ease;
   will-change: opacity;
-  /* Source photos are ~736px wide upscaled to fill the hero — a slight
-     contrast/saturation boost counteracts the flattening that comes with
-     upscaling. image-rendering: auto (bilinear/bicubic) tested against
-     crisp-edges/pixelated; those are for downscaling/pixel art and make
-     photographic upscale artifacts worse, so auto stays. No sharpening
-     filter — halos from sharpening a soft source look worse than the
-     softness itself. */
+  /* Source photos are ~736px wide; now displayed at roughly half the hero's
+     width instead of full-bleed, so the upscale ratio is much lower than
+     before. Slight contrast/saturation boost still helps a touch. */
   filter: contrast(1.05) saturate(1.05);
-  image-rendering: auto;
 }
 .hero-slide.is-active { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .hero-slide { transition: none; }
 }
-/* No full-frame scrim — legibility comes from the text-shadow on .hero-content
-   plus the narrow fallback gradient below, so the photography stays visible. */
 
-/* ---------- Hero slide dots ---------- */
+/* ---------- Hero slide dots (sit on the media panel only) ---------- */
 .hero-dots {
   position: absolute;
   left: 50%;
@@ -256,7 +313,7 @@ a { color: inherit; }
   padding: 0;
   border: none;
   border-radius: 3px;
-  background: rgba(247, 244, 238, 0.32);
+  background: rgba(247, 244, 238, 0.5);
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -267,71 +324,10 @@ a { color: inherit; }
   width: 30px;
   background: var(--brass-300);
 }
-.hero-dot:hover, .hero-dot:focus-visible { background: rgba(247, 244, 238, 0.5); }
+.hero-dot:hover, .hero-dot:focus-visible { background: rgba(247, 244, 238, 0.75); }
 @media (prefers-reduced-motion: reduce) {
   .hero-dots { display: none; }
 }
-.hero-content {
-  position: relative;
-  z-index: 1;
-  padding: 108px clamp(40px, 8vw, 120px) 88px clamp(64px, 11vw, 200px);
-  /* box-sizing:border-box means padding eats into max-width — add the
-     padding back on top of the target 720px content width so the text
-     column stays the same width as before, just shifted right. */
-  max-width: calc(720px + clamp(64px, 11vw, 200px) + clamp(40px, 8vw, 120px));
-}
-/* Narrow fallback gradient behind the text column only — a safety net for
-   legibility on top of the text-shadow, not a substitute for it. Extends
-   past the left edge and fades out before the text ends. */
-.hero-content::before {
-  content: "";
-  position: absolute;
-  top: -32px;
-  bottom: -32px;
-  left: -100vw;
-  right: -8%;
-  background: linear-gradient(90deg, rgba(8, 13, 26, 0.5) 0%, rgba(8, 13, 26, 0.4) 55%, rgba(8, 13, 26, 0) 100%);
-  z-index: -1;
-  pointer-events: none;
-}
-.hero-eyebrow {
-  font-family: var(--font-sans);
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.78rem;
-  color: var(--brass-300);
-  font-weight: 700;
-  margin-bottom: 20px;
-  display: block;
-  text-shadow: var(--hero-text-shadow);
-}
-.hero h1 {
-  font-size: clamp(2.3rem, 5vw, 3.75rem);
-  color: var(--paper);
-  overflow: hidden;
-  text-shadow: var(--hero-text-shadow);
-}
-.hero h1 .line {
-  display: block;
-  transform: translateY(110%);
-  animation: hero-reveal 0.8s cubic-bezier(0.2, 0.9, 0.25, 1) forwards;
-}
-.hero h1 .line:nth-child(2) { animation-delay: 0.12s; }
-@keyframes hero-reveal {
-  to { transform: translateY(0); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero h1 .line { transform: none; animation: none; }
-}
-.hero-sub {
-  font-size: 1.15rem;
-  max-width: 50ch;
-  margin: 26px 0 36px;
-  color: var(--paper-dim);
-  text-shadow: var(--hero-text-shadow);
-}
-.hero-ctas { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
-.hero-note { font-size: 0.85rem; color: var(--brass-300); margin-top: 20px; text-shadow: var(--hero-text-shadow); }
 
 /* ---------- Trust bar ---------- */
 .trust-bar {
@@ -558,8 +554,11 @@ address { font-style: normal; font-size: 0.95rem; line-height: 1.7; }
   .cta-form-wrap { padding: 56px 24px; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .trust-bar .container { flex-direction: column; align-items: flex-start; }
-  .hero { min-height: 92vh; align-items: center; }
-  .hero-content { padding: 88px 6vw 56px 7vw; max-width: 100%; }
-  .hero-content::before { left: -24px; right: -16px; }
+  /* Stack the split hero: navy text panel on top (headline/CTA visible
+     immediately), photo carousel below — not side-by-side below tablet. */
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-text-panel { padding: 56px 24px 48px; }
+  .hero-media-panel { min-height: 360px; }
+  .hero-watermark { width: 70%; }
   .hero-dots { bottom: 18px; }
 }
