@@ -27,7 +27,10 @@
 <!-- Fonts: Fraunces (heading serif, craftsmanship character) + Inter (body sans) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Fraunces opsz capped at 72 (not the full 9..144 range) — at full range the
+     browser auto-selects the most stylised "display" cut for large headings,
+     which gives letters like lowercase f an exaggerated, distorted hook. -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..72,500;9..72,600;9..72,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
 <link rel="preload" as="image" href="images/hero-2.png" fetchpriority="high">
@@ -152,15 +155,28 @@
 
   <!-- TRUST BAR -->
   <div class="trust-bar">
-    <div class="container">
+    <div class="container trust-bar-inner">
       <ul class="coverage-list" aria-label="Areas we cover">
-        <li>Cheshire</li>
-        <li>Staffordshire</li>
-        <li>Shropshire</li>
-        <li>Greater Manchester</li>
-        <li>North Wales</li>
+        <li><svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-7.58-7-12a7 7 0 0 1 14 0c0 4.42-7 12-7 12z"/><circle cx="12" cy="9" r="2.3"/></svg><span>Cheshire</span></li>
+        <li><svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-7.58-7-12a7 7 0 0 1 14 0c0 4.42-7 12-7 12z"/><circle cx="12" cy="9" r="2.3"/></svg><span>Staffordshire</span></li>
+        <li><svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-7.58-7-12a7 7 0 0 1 14 0c0 4.42-7 12-7 12z"/><circle cx="12" cy="9" r="2.3"/></svg><span>Shropshire</span></li>
+        <li><svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-7.58-7-12a7 7 0 0 1 14 0c0 4.42-7 12-7 12z"/><circle cx="12" cy="9" r="2.3"/></svg><span>Greater Manchester</span></li>
+        <li><svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-7.58-7-12a7 7 0 0 1 14 0c0 4.42-7 12-7 12z"/><circle cx="12" cy="9" r="2.3"/></svg><span>North Wales</span></li>
       </ul>
-      <p class="trust-stat">Every kitchen fitted personally by Josh &amp; Lee — no subcontractors</p>
+      <ul class="trust-badges" aria-label="Why choose us">
+        <li>
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="12 2.5 15.1 8.9 22 9.9 17 14.9 18.2 21.9 12 18.6 5.8 21.9 7 14.9 2 9.9 8.9 8.9 12 2.5"/></svg>
+          <span>5-star rated by clients</span>
+        </li>
+        <li>
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <span>Fitted personally by Josh &amp; Lee — no subcontractors</span>
+        </li>
+        <li>
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.6L11 4H4v7l9.6 9.6a2 2 0 0 0 2.8 0l4.2-4.2a2 2 0 0 0 0-2.8z"/><circle cx="8" cy="8" r="1.4" fill="currentColor" stroke="none"/></svg>
+          <span>Free, no-obligation quotes</span>
+        </li>
+      </ul>
     </div>
   </div>
 
@@ -328,8 +344,8 @@
           <span class="brand-name" style="color:var(--paper)">JL Kitchens &amp; Bedrooms</span>
           <address>
             Cheshire-based kitchen &amp; wardrobe fitters<br>
-            <!-- Placeholder contact details — confirm real number/inbox before launch -->
-            Phone: 01xxx xxx xxx<br>
+            Phone: <a href="tel:+447712657776">07712 657776</a><br>
+            <!-- Placeholder inbox — confirm real address before launch -->
             Email: <a href="mailto:info@jl-kitchens.co.uk">info@jl-kitchens.co.uk</a>
           </address>
           <div class="social-row">

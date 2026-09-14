@@ -331,31 +331,52 @@ a { color: inherit; }
 
 /* ---------- Trust bar ---------- */
 .trust-bar {
-  background: var(--navy-950);
+  /* Lighter than the hero's navy-950 plus a gold hairline + shadow so it
+     reads as its own strip rather than a continuation of the hero. */
+  background: var(--navy-800);
   color: var(--paper);
-  border-top: 1px solid rgba(217, 190, 140, 0.18);
+  border-top: 1px solid rgba(217, 190, 140, 0.3);
+  box-shadow: 0 12px 20px -16px rgba(0, 0, 0, 0.45) inset;
+  position: relative;
+  z-index: 1;
 }
-.trust-bar .container {
+.trust-bar-inner {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px 32px;
+  gap: 16px 40px;
   align-items: center;
   justify-content: space-between;
-  padding-top: 22px;
-  padding-bottom: 22px;
-  font-size: 0.92rem;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 0.88rem;
 }
-.coverage-list {
+.trust-icon {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  color: var(--brass-500);
+}
+.coverage-list,
+.trust-badges {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 18px;
+  gap: 10px 22px;
   margin: 0;
   padding: 0;
 }
-.coverage-list li { display: flex; align-items: center; gap: 8px; color: var(--paper-dim); }
-.coverage-list li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--brass-500); }
-.trust-stat { color: var(--brass-300); font-weight: 600; }
+.coverage-list li,
+.trust-badges li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--paper-dim);
+}
+.trust-badges {
+  padding-left: 32px;
+  border-left: 1px solid rgba(217, 190, 140, 0.22);
+}
+.trust-badges li { font-weight: 600; color: var(--brass-300); }
 
 /* ---------- Section scaffolding ---------- */
 section { padding: 96px 0; }
@@ -553,7 +574,8 @@ address { font-style: normal; font-size: 0.95rem; line-height: 1.7; }
   .form-row { grid-template-columns: 1fr; }
   .cta-form-wrap { padding: 56px 24px; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  .trust-bar .container { flex-direction: column; align-items: flex-start; }
+  .trust-bar-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .trust-badges { padding-left: 0; border-left: none; padding-top: 14px; border-top: 1px solid rgba(217, 190, 140, 0.22); width: 100%; }
   /* Stack the split hero: navy text panel on top (headline/CTA visible
      immediately), photo carousel below — not side-by-side below tablet. */
   .hero { grid-template-columns: 1fr; min-height: auto; }
