@@ -24,13 +24,15 @@
 
 <link rel="icon" href="images/logo.png" type="image/png">
 
-<!-- Fonts: Fraunces (heading serif, craftsmanship character) + Inter (body sans) -->
+<!-- Fonts: Playfair Display (heading serif) + Inter (body sans).
+     Was Fraunces, capped to opsz 9..72 to tame its stylised "display" cut —
+     but its lowercase f/j are unusually shaped by design at every optical
+     size (that's the typeface's whole character), not just at large sizes,
+     so capping opsz only partly helped. Playfair Display keeps a premium,
+     elegant serif feel for headings with completely conventional letterforms. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Fraunces opsz capped at 72 (not the full 9..144 range) — at full range the
-     browser auto-selects the most stylised "display" cut for large headings,
-     which gives letters like lowercase f an exaggerated, distorted hook. -->
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..72,500;9..72,600;9..72,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
 <link rel="preload" as="image" href="images/hero-2.png" fetchpriority="high">
