@@ -192,7 +192,17 @@ a { color: inherit; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  min-height: 88vh;
+  /* z-index:0 forces this to be its own stacking context, so the
+     background below is correctly contained behind hero-media's
+     z-index:-1 image layer instead of painting over it. */
+  z-index: 0;
+  /* Source photos are low native resolution (~736px wide); a shorter,
+     width-capped hero keeps the upscale ratio down until higher-res
+     photography is available. */
+  min-height: clamp(480px, 70vh, 720px);
+  max-width: 1920px;
+  margin: 0 auto;
+  background: var(--navy-950);
   display: flex;
   align-items: flex-end;
   color: var(--paper);
@@ -213,6 +223,15 @@ a { color: inherit; }
   opacity: 0;
   transition: opacity 1.6s ease;
   will-change: opacity;
+  /* Source photos are ~736px wide upscaled to fill the hero — a slight
+     contrast/saturation boost counteracts the flattening that comes with
+     upscaling. image-rendering: auto (bilinear/bicubic) tested against
+     crisp-edges/pixelated; those are for downscaling/pixel art and make
+     photographic upscale artifacts worse, so auto stays. No sharpening
+     filter — halos from sharpening a soft source look worse than the
+     softness itself. */
+  filter: contrast(1.05) saturate(1.05);
+  image-rendering: auto;
 }
 .hero-slide.is-active { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
