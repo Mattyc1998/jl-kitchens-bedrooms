@@ -274,11 +274,11 @@ a { color: inherit; }
 .hero-content {
   position: relative;
   z-index: 1;
-  padding: 108px clamp(40px, 8vw, 120px) 88px clamp(32px, 7vw, 112px);
+  padding: 108px clamp(40px, 8vw, 120px) 88px clamp(64px, 11vw, 200px);
   /* box-sizing:border-box means padding eats into max-width — add the
      padding back on top of the target 720px content width so the text
      column stays the same width as before, just shifted right. */
-  max-width: calc(720px + clamp(32px, 7vw, 112px) + clamp(40px, 8vw, 120px));
+  max-width: calc(720px + clamp(64px, 11vw, 200px) + clamp(40px, 8vw, 120px));
 }
 /* Narrow fallback gradient behind the text column only — a safety net for
    legibility on top of the text-shadow, not a substitute for it. Extends
