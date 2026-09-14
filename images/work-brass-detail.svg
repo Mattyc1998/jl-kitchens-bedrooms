@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-labelledby="t4 d4">
+  <title id="t4">Close-up of brass cabinet handle on painted shaker door, Cheshire kitchen fit</title>
+  <desc id="d4">Placeholder photography — swap for real installation photo</desc>
+  <defs>
+    <radialGradient id="brassSpot" cx="0.4" cy="0.35" r="0.8">
+      <stop offset="0" stop-color="#E4C889"/>
+      <stop offset="1" stop-color="#12203D"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#brassSpot)"/>
+  <rect x="150" y="0" width="600" height="900" fill="#20345B" opacity="0.55"/>
+  <rect x="330" y="330" width="240" height="240" rx="6" fill="#2A3E67" stroke="#12203D" stroke-width="4"/>
+  <rect x="470" y="420" width="70" height="16" rx="8" fill="#B08D4F" stroke="#E4C889" stroke-width="2"/>
+  <circle cx="480" cy="428" r="5" fill="#E4C889"/>
+  <rect x="20" y="836" width="360" height="42" rx="4" fill="#0D1730" opacity="0.55"/>
+  <text x="36" y="862" font-family="Inter, sans-serif" font-size="17" fill="#E4C889">Placeholder photo</text>
+</svg>

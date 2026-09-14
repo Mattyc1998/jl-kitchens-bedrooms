@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-labelledby="t2 d2">
+  <title id="t2">Off-white shaker kitchen units with brass handles, Cheadle</title>
+  <desc id="d2">Placeholder photography — swap for real installation photo</desc>
+  <rect width="900" height="900" fill="#EDE7DA"/>
+  <rect x="0" y="600" width="900" height="300" fill="#DCD3C0"/>
+  <g fill="#F7F3E9" stroke="#C7BEA9" stroke-width="3">
+    <rect x="60" y="320" width="190" height="280" rx="4"/>
+    <rect x="260" y="320" width="190" height="280" rx="4"/>
+    <rect x="460" y="320" width="190" height="280" rx="4"/>
+    <rect x="660" y="320" width="190" height="280" rx="4"/>
+  </g>
+  <g fill="none" stroke="#D8CFBA" stroke-width="2">
+    <rect x="85" y="345" width="140" height="105"/>
+    <rect x="85" y="465" width="140" height="105"/>
+    <rect x="285" y="345" width="140" height="105"/>
+    <rect x="285" y="465" width="140" height="105"/>
+    <rect x="485" y="345" width="140" height="105"/>
+    <rect x="485" y="465" width="140" height="105"/>
+    <rect x="685" y="345" width="140" height="105"/>
+    <rect x="685" y="465" width="140" height="105"/>
+  </g>
+  <g fill="#B08D4F">
+    <circle cx="235" cy="398" r="5"/>
+    <circle cx="235" cy="518" r="5"/>
+    <circle cx="435" cy="398" r="5"/>
+    <circle cx="435" cy="518" r="5"/>
+    <circle cx="635" cy="398" r="5"/>
+    <circle cx="635" cy="518" r="5"/>
+    <circle cx="835" cy="398" r="5"/>
+    <circle cx="835" cy="518" r="5"/>
+  </g>
+  <rect x="40" y="290" width="820" height="24" fill="#FBF8F0" stroke="#C7BEA9" stroke-width="2"/>
+  <rect x="20" y="836" width="360" height="42" rx="4" fill="#3A342A" opacity="0.5"/>
+  <text x="36" y="862" font-family="Inter, sans-serif" font-size="17" fill="#F7F3E9">Placeholder photo</text>
+</svg>

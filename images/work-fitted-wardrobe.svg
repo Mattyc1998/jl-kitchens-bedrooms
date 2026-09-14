@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-labelledby="t3 d3">
+  <title id="t3">Fitted wardrobe with shaker doors and brushed brass handles, Malpas</title>
+  <desc id="d3">Placeholder photography — swap for real installation photo</desc>
+  <rect width="900" height="900" fill="#DCE1E6"/>
+  <rect x="0" y="700" width="900" height="200" fill="#C9CFD6"/>
+  <g fill="#EDEFF1" stroke="#B7BEC6" stroke-width="3">
+    <rect x="100" y="100" width="140" height="600" rx="4"/>
+    <rect x="250" y="100" width="140" height="600" rx="4"/>
+    <rect x="400" y="100" width="140" height="600" rx="4"/>
+    <rect x="550" y="100" width="140" height="600" rx="4"/>
+    <rect x="700" y="100" width="100" height="600" rx="4"/>
+  </g>
+  <g fill="#B08D4F">
+    <circle cx="220" cy="400" r="6"/>
+    <circle cx="270" cy="400" r="6"/>
+    <circle cx="520" cy="400" r="6"/>
+    <circle cx="570" cy="400" r="6"/>
+  </g>
+  <rect x="20" y="836" width="360" height="42" rx="4" fill="#232A31" opacity="0.5"/>
+  <text x="36" y="862" font-family="Inter, sans-serif" font-size="17" fill="#EDEFF1">Placeholder photo</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-labelledby="t1 d1">
+  <title id="t1">Sage green shaker kitchen with marble island, Crewe</title>
+  <desc id="d1">Placeholder photography — swap for real installation photo</desc>
+  <defs>
+    <linearGradient id="sageBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8B9A7B"/>
+      <stop offset="1" stop-color="#6D7C5F"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#sageBg)"/>
+  <rect x="0" y="560" width="900" height="340" fill="#F2EFE7"/>
+  <!-- island -->
+  <rect x="150" y="470" width="600" height="140" rx="6" fill="#EDEAE1" stroke="#C9C3B4" stroke-width="3"/>
+  <rect x="150" y="450" width="600" height="24" fill="#FBFAF6" stroke="#C9C3B4" stroke-width="2"/>
+  <g stroke="#9B9585" stroke-width="1.5">
+    <line x1="180" y1="470" x2="180" y2="610"/>
+    <line x1="300" y1="470" x2="300" y2="610"/>
+    <line x1="420" y1="470" x2="420" y2="610"/>
+    <line x1="540" y1="470" x2="540" y2="610"/>
+    <line x1="660" y1="470" x2="660" y2="610"/>
+  </g>
+  <!-- wall units -->
+  <g fill="#77855F" stroke="#5B6748" stroke-width="3">
+    <rect x="80" y="140" width="180" height="260" rx="4"/>
+    <rect x="280" y="140" width="180" height="260" rx="4"/>
+    <rect x="640" y="140" width="180" height="260" rx="4"/>
+  </g>
+  <g fill="#B08D4F">
+    <circle cx="240" cy="270" r="6"/>
+    <circle cx="300" cy="270" r="6"/>
+    <circle cx="800" cy="270" r="6"/>
+  </g>
+  <rect x="20" y="836" width="360" height="42" rx="4" fill="#2A2E22" opacity="0.55"/>
+  <text x="36" y="862" font-family="Inter, sans-serif" font-size="17" fill="#F2EFE7">Placeholder photo</text>
+</svg>
