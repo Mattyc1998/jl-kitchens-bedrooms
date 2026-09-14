@@ -172,6 +172,7 @@ a { color: inherit; }
   transition: border-color 0.15s ease, color 0.15s ease;
 }
 .main-nav a:hover, .main-nav a:focus-visible { border-color: var(--brass-500); color: var(--brass-300); }
+.main-nav a.is-active { border-color: var(--brass-500); color: var(--brass-300); }
 
 .header-actions { display: flex; align-items: center; gap: 18px; }
 .header-cta { display: inline-flex; }
@@ -378,6 +379,20 @@ a { color: inherit; }
 }
 .trust-badges li { font-weight: 600; color: var(--brass-300); }
 
+/* ---------- Restrained scroll-reveal ---------- */
+/* Applied via IntersectionObserver in script.js to .editorial-row,
+   .testimonial and .work-item. Subtle rise + fade, staggered per group,
+   triggers once. Skipped entirely under prefers-reduced-motion. */
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
 /* ---------- Section scaffolding ---------- */
 section { padding: 96px 0; }
 .section-head { max-width: 640px; margin-bottom: 48px; }
@@ -399,7 +414,23 @@ section { padding: 96px 0; }
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-.work-item { position: relative; border-radius: var(--radius-m); overflow: hidden; box-shadow: var(--shadow-card); min-height: 340px; }
+.work-item {
+  position: relative;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  min-height: 340px;
+  /* .work-item is a <button> (opens the lightbox) — reset button chrome. */
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
 .work-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
 .work-item:hover img { transform: scale(1.04); }
 .work-item .work-caption {
@@ -409,6 +440,74 @@ section { padding: 96px 0; }
   color: var(--paper);
   font-size: 0.92rem;
   font-weight: 600;
+  text-align: left;
+}
+
+/* ---------- Gallery lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(9, 14, 28, 0.92);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+}
+.lightbox.is-open { opacity: 1; visibility: visible; }
+body.lightbox-open { overflow: hidden; }
+.lightbox-figure {
+  margin: 0;
+  max-width: min(92vw, 1100px);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.lightbox-img {
+  max-width: 100%;
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  border-radius: var(--radius-m);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+}
+.lightbox-caption { color: var(--paper); font-size: 0.95rem; text-align: center; }
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  border: 1px solid rgba(217, 190, 140, 0.35);
+  background: rgba(247, 244, 238, 0.1);
+  color: var(--paper);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.lightbox-close:hover, .lightbox-close:focus-visible,
+.lightbox-nav:hover, .lightbox-nav:focus-visible {
+  background: var(--brass-500);
+  color: var(--navy-950);
+  border-color: var(--brass-500);
+}
+.lightbox-close { top: 20px; right: 20px; width: 44px; height: 44px; }
+.lightbox-close svg { width: 20px; height: 20px; }
+.lightbox-nav { top: 50%; transform: translateY(-50%); width: 48px; height: 48px; }
+.lightbox-nav svg { width: 22px; height: 22px; }
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+@media (max-width: 780px) {
+  .lightbox-close { top: 12px; right: 12px; width: 40px; height: 40px; }
+  .lightbox-nav { width: 40px; height: 40px; }
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+  .lightbox-figure { gap: 10px; }
 }
 
 /* ---------- Testimonials ---------- */
@@ -428,6 +527,16 @@ section { padding: 96px 0; }
   border: 1px solid rgba(217, 190, 140, 0.18);
   border-radius: var(--radius-m);
   padding: 32px 28px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+/* hover:hover + pointer:fine excludes touch devices, which report a hover
+   state on tap that then gets "stuck" until the user taps elsewhere. */
+@media (hover: hover) and (pointer: fine) {
+  .testimonial:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 44px -22px rgba(0, 0, 0, 0.55);
+    border-color: rgba(217, 190, 140, 0.4);
+  }
 }
 .testimonial .quote-mark { font-family: var(--font-serif); font-size: 2.6rem; color: var(--brass-500); line-height: 1; display: block; margin-bottom: 8px; }
 .testimonial blockquote { margin: 0 0 20px; font-size: 1.02rem; color: var(--paper-dim); }
@@ -533,6 +642,8 @@ form.enquiry-form { display: grid; gap: 20px; }
 .footer-col a { text-decoration: none; color: var(--paper-dim); font-size: 0.95rem; }
 .footer-col a:hover, .footer-col a:focus-visible { color: var(--brass-300); }
 address { font-style: normal; font-size: 0.95rem; line-height: 1.7; }
+.footer-contact-line { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.footer-icon { width: 14px; height: 14px; flex: none; color: var(--brass-500); }
 .social-row { display: flex; gap: 12px; margin-top: 16px; }
 .social-row a {
   width: 38px; height: 38px;
@@ -580,7 +691,16 @@ address { font-style: normal; font-size: 0.95rem; line-height: 1.7; }
      immediately), photo carousel below — not side-by-side below tablet. */
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-text-panel { padding: 56px 24px 48px; }
-  .hero-media-panel { min-height: 360px; }
+  /* A contained, near-square crop (rather than a tall full-viewport-height
+     one) so object-fit:cover doesn't have to zoom in as aggressively —
+     less of each photo gets cropped away on narrow screens. */
+  .hero-media-panel { aspect-ratio: 1 / 1; min-height: 320px; }
   .hero-watermark { width: 70%; }
   .hero-dots { bottom: 18px; }
+
+  /* Per-image object-position — default "center" crops each photo
+     differently well; tuned per photo so the most important part
+     (the run of cabinetry, not empty wall/ceiling) stays in frame. */
+  .hs-hero2 { object-position: 50% 55%; }
+  .hs-hero4 { object-position: 50% 38%; }
 }
